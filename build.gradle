@@ -1,0 +1,33 @@
+buildscript {
+    dependencies {
+        classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.27")
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'checkstyle'
+apply plugin: 'io.spring.javaformat'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:latest.release'
+    testImplementation 'org.assertj:assertj-core:latest.release'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.27")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+wrapper {
+    gradleVersion = '6.8.2'
+}
