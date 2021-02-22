@@ -1,6 +1,10 @@
 package com.izeye.leetcode2021.problems.problem1;
 
-import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,34 +15,40 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class SolutionTests {
 
-	private final Solution solution = new Solution();
-
-	@Test
-	void example1() {
+	@ParameterizedTest
+	@MethodSource("solutions")
+	void example1(Solution solution) {
 		int[] nums = { 2, 7, 11, 15 };
 		int target = 9;
-		assertThat(this.solution.twoSum(nums, target)).containsExactlyInAnyOrder(0, 1);
+		assertThat(solution.twoSum(nums, target)).containsExactlyInAnyOrder(0, 1);
 	}
 
-	@Test
-	void example2() {
+	@ParameterizedTest
+	@MethodSource("solutions")
+	void example2(Solution solution) {
 		int[] nums = { 3, 2, 4 };
 		int target = 6;
-		assertThat(this.solution.twoSum(nums, target)).containsExactlyInAnyOrder(1, 2);
+		assertThat(solution.twoSum(nums, target)).containsExactlyInAnyOrder(1, 2);
 	}
 
-	@Test
-	void example3() {
+	@ParameterizedTest
+	@MethodSource("solutions")
+	void example3(Solution solution) {
 		int[] nums = { 3, 3 };
 		int target = 6;
-		assertThat(this.solution.twoSum(nums, target)).containsExactlyInAnyOrder(0, 1);
+		assertThat(solution.twoSum(nums, target)).containsExactlyInAnyOrder(0, 1);
 	}
 
-	@Test
-	void youMayNotUseTheSameElementTwice() {
+	@ParameterizedTest
+	@MethodSource("solutions")
+	void youMayNotUseTheSameElementTwice(Solution solution) {
 		int[] nums = { 2, 5, 5, 11 };
 		int target = 10;
-		assertThat(this.solution.twoSum(nums, target)).containsExactlyInAnyOrder(1, 2);
+		assertThat(solution.twoSum(nums, target)).containsExactlyInAnyOrder(1, 2);
+	}
+
+	private static List<Solution> solutions() {
+		return Arrays.asList(new MySolution(), new TwoPassHashTableSolution(), new OnePassHashTableSolution());
 	}
 
 }
